@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de gerenciamento de processos jurídicos">
+    <title>Gerenciador de Processos Jurídicos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gerenciador de Processos Jurídicos</h1>
+            <button id="novoProcessoBtn" class="btn-primary" aria-label="Adicionar novo processo">
+                <span aria-hidden="true">+</span> Novo Processo
+            </button>
+        </header>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Número do Processo</th>
+                        <th scope="col">Reclamante</th>
+                        <th scope="col">Reclamada</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Valor da Causa</th>
+                        <th scope="col">Data de Ajuizamento</th>
+                        <th scope="col">Cidade / UF</th>
+                        <th scope="col">Vara</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaProcessos" aria-live="polite">
+                    <!-- Processos serão inseridos aqui via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal de Cadastro/Edição -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-overlay" id="modalOverlay" tabindex="-1"></div>
+        <div class="modal-content">
+            <button class="close" id="fecharModalBtn" aria-label="Fechar modal">&times;</button>
+            <h2 id="modalTitle">Novo Processo</h2>
+            <form id="formProcesso" class="modal-form">
+                <input type="hidden" id="processoId">
+
+                <div class="form-group">
+                    <label for="numeroProcesso">Número do Processo</label>
+                    <input type="text" id="numeroProcesso" required 
+                           placeholder="Ex: 1234567-89.2024.5.01.0001"
+                           pattern="\d{7}-\d{2}\.\d{4}\.\d\.\d{2}\.\d{4}"
+                           title="Formato: 9999999-99.9999.9.99.9999">
+                </div>
+
+                <div class="form-group">
+                    <label for="reclamante">Reclamante</label>
+                    <input type="text" id="reclamante" required 
+                           placeholder="Nome completo do reclamante"
+                           minlength="3">
+                </div>
+
+                <div class="form-group">
+                    <label for="reclamada">Reclamada</label>
+                    <input type="text" id="reclamada" required 
+                           placeholder="Nome da empresa ou pessoa"
+                           minlength="3">
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" required>
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="Em andamento">Ativo</option>
+                        <option value="Concluído">Concluído</option>
+                        <option value="Encerrado">Encerrado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="valorCausa">Valor da Causa (R$)</label>
+                    <input type="text" id="valorCausa" required 
+                           placeholder="Ex: 10.000,00"
+                           pattern="^\d{1,3}(\.\d{3})*,\d{2}$"
+                           title="Formato: 9.999,99">
+                </div>
+
+                <div class="form-group">
+                    <label for="dataAjuizamento">Data de Ajuizamento</label>
+                    <input type="date" id="dataAjuizamento" required
+                           max="<?= date('Y-m-d') ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="cidade" required 
+                           placeholder="Ex: São Paulo"
+                           minlength="3">
+                </div>
+
+                <div class="form-group">
+                    <label for="uf">UF</label>
+                    <select id="uf" required>
+                        <option value="" disabled selected>Selecione</option>
+                        <!-- Estados serão preenchidos via JavaScript -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="vara">Vara</label>
+                    <input type="text" id="vara" required 
+                           placeholder="Ex: 1ª Vara do Trabalho"
+                           minlength="3">
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn-primary">Salvar</button>
+                    <button type="button" id="limparBtn" class="btn-secondary">Limpar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

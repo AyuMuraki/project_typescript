@@ -38,7 +38,9 @@ private async carregarProcessos(): Promise<void> {
 
 
 📌 **Ordem de carregamento:**
+
 1️⃣ Verifica se há processos armazenados no LocalStorage.  
+
 2️⃣ Caso não existam, carrega os dados do arquivo `processos.json`.  
 
 ---
@@ -65,7 +67,9 @@ Os processos são armazenados em um formato JSON:
 ```
 
 🔹 **Transformação dos dados para exibição:**
+
 - Cada processo é convertido em uma linha HTML (`<tr>`).
+  
 - Formatação aplicada aos valores:
   - 💰 Moeda: `R$ 12.500,50`
   - 📍 UF: `SP` (sempre em maiúsculas)
@@ -91,6 +95,7 @@ public adicionarOuEditarProcesso(index: number | null, processo: Processo) {
 ```
 
 📌 **Diferenciação entre edição e novo cadastro:**  
+
 - Se `index` for diferente de `null`, o processo existente é editado.  
 - Caso contrário, um novo processo é adicionado à lista.  
 - O operador spread (`...`) é utilizado para garantir a cópia segura dos dados.
@@ -120,7 +125,9 @@ public adicionarOuEditarProcesso(index: number | null, processo: Processo) {
 ## 🚀 Como Compilar e Executar
 
 ### 📌 Pré-requisitos
+
 - **Node.js** instalado
+- 
 - **TypeScript** instalado globalmente:
 
 ```sh
@@ -148,6 +155,7 @@ tsc --init
 Isso criará um arquivo `tsconfig.json` com as configurações do TypeScript.
 
 📌 Exemplo de `tsconfig.json`:
+
 ```json
 {
   "compilerOptions": {
@@ -161,17 +169,20 @@ Isso criará um arquivo `tsconfig.json` com as configurações do TypeScript.
 ```
 
 2️⃣ **Compilar o TypeScript para JavaScript**:
+
 ```sh
 tsc
 ```
 Isso converterá os arquivos `.ts` para `.js`.
 
 🔄 **Para compilar automaticamente a cada alteração:**
+
 ```sh
 tsc --watch
 ```
 
 3️⃣ **Executar o projeto**
+
 - Abra o `index.html` diretamente no navegador ou utilize um servidor local, como o **Live Server** no VSCode.
 
 ---
@@ -179,6 +190,7 @@ tsc --watch
 ## 🛠️ Melhorias e Dicas
 
 ✅ **Adicionar validações para evitar entradas inválidas:**
+
 ```typescript
 if (!processo.numero.match(/\d{7}-\d{2}\.\d{4}/)) {
     alert("Número do processo inválido!");
@@ -197,6 +209,7 @@ filtrarPorStatus(status: string) {
 ---
 
 ## 🎯 Conclusão
+
 Este sistema demonstra o uso prático de **TypeScript** para aplicações web, proporcionando:
 
 ✔️ Tipagem estática para maior segurança e controle  

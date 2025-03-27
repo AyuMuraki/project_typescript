@@ -127,7 +127,6 @@ public adicionarOuEditarProcesso(index: number | null, processo: Processo) {
 ### 📌 Pré-requisitos
 
 - **Node.js** instalado
-- 
 - **TypeScript** instalado globalmente:
 
 ```sh
